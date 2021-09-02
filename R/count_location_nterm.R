@@ -27,7 +27,10 @@ n_counts_comb <- dplyr::count(count_info_acetyl,
                            start_position = fct_reorder(start_position, n, .desc = TRUE),
                            normalized_location = fct_reorder(normalized_location, n, .desc = TRUE))
 
-return(n_counts_comb)
+list_location_acetyl <- list(count_info_acetyl = count_info_acetyl,
+                             n_counts_comb = n_counts_comb)
+
+return(list_location_acetyl)
 
 
 }
