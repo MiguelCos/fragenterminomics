@@ -7,6 +7,9 @@ annotate_nterm <- function(peptidestsv, # peptide.tsv table
                            tmtmass = 304.2072) # either 304.2072 for 16plex or 229.1629 for 10/11plex
 {
 
+require(dplyr)
+require(stringr)
+                    
    if (tmtmass == 304.2072){
    
    nterm_tmt <- "N-term\\(304.2072\\)"
