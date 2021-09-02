@@ -23,7 +23,7 @@ annotate_nterm <- function(peptidestsv, # peptide.tsv table
                        
    }
                     
-  peptidestsv %>% 
+  nterm_annotated <- peptidestsv %>% 
       mutate(nterm = case_when(str_detect(assigned_modifications, nterm_tmt) ~ "TMT-labelled",
                                str_detect(assigned_modifications, "N-term\\(42.0106\\)") ~ "acetylated",
                                TRUE ~ "free")) %>%
@@ -42,6 +42,8 @@ annotate_nterm <- function(peptidestsv, # peptide.tsv table
              semi_type  = case_when(nterm == "acetylated" & str_detect(last_aa, "R|K") ~ "tryptic_nterm",
                                     nterm == "acetylated" & str_detect(last_aa, "R|K", negate = TRUE) ~ "unspecific_nterm",
                                     TRUE ~ semi_type))
+  
+  return(nterm_annotated)
                     
 } 
 
