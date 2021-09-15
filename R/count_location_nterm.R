@@ -109,7 +109,7 @@ count_location_nterm <- function(tmt_report_annotated){
     
     
     list_location_nterms <- list(general_peptide_annotation = count_info,
-                                 count_info_acetyl = count_info_acetyl,
+                                 count_info_acetyl = count_info_acetylated,
                                  count_info_tmtneo = count_info_tmtneo,
                                  plot_aa_before = plot_aa_before,
                                  plot_normalized_location = plot_norm_locat)
