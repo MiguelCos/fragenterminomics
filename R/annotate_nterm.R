@@ -4,7 +4,8 @@
 # or free
 
 annotate_nterm <- function(peptidestsv, # peptide.tsv table
-                           tmtmass = 304.2072) # either 304.2072 for 16plex or 229.1629 for 10/11plex
+                           tmtmass = 304.2072, # either 304.2072 for 16plex or 229.1629 for 10/11plex
+                           protease_specificity = "R|K") # or R for argc 
 {
 
 require(dplyr)
@@ -39,11 +40,11 @@ require(stringr)
                                  str_detect(assigned_modifications, ktmt,
                                             negate = TRUE) & nterm == "free" ~ "untagged_free",
                                  TRUE ~ "untagged")) %>%
-      mutate(specificity = case_when(nterm == "acetylated" & str_detect(last_aa, "R|K") ~ "tryptic",
-                                     nterm == "acetylated" & str_detect(last_aa, "R|K", negate = TRUE) ~ "unspecific",
+      mutate(specificity = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "tryptic",
+                                     nterm == "acetylated" & str_detect(last_aa, protease_specificity, negate = TRUE) ~ "unspecific",
                                      TRUE ~ specificity),
-             semi_type  = case_when(nterm == "acetylated" & str_detect(last_aa, "R|K") ~ "tryptic_nterm",
-                                    nterm == "acetylated" & str_detect(last_aa, "R|K", negate = TRUE) ~ "unspecific_nterm",
+             semi_type  = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "tryptic_nterm",
+                                    nterm == "acetylated" & str_detect(last_aa, protease_specificity, negate = TRUE) ~ "unspecific_nterm",
                                     TRUE ~ semi_type))
   
   return(nterm_annotated)
