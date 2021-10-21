@@ -40,10 +40,10 @@ require(stringr)
                                  str_detect(assigned_modifications, ktmt,
                                             negate = TRUE) & nterm == "free" ~ "untagged_free",
                                  TRUE ~ "untagged")) %>%
-      mutate(specificity = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "tryptic",
+      mutate(specificity = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "specific",
                                      nterm == "acetylated" & str_detect(last_aa, protease_specificity, negate = TRUE) ~ "unspecific",
                                      TRUE ~ specificity),
-             semi_type  = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "tryptic_nterm",
+             semi_type  = case_when(nterm == "acetylated" & str_detect(last_aa, protease_specificity) ~ "specific_nterm",
                                     nterm == "acetylated" & str_detect(last_aa, protease_specificity, negate = TRUE) ~ "unspecific_nterm",
                                     TRUE ~ semi_type))
   
