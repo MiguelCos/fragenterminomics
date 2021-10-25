@@ -16,7 +16,7 @@ count_location_nterm <- function(tmt_report_annotated){
                                       start_position, end_position, last_aa, aa_after,
                                       aa_before, following_10_resid, previous_10_resid, protein_length, previous_all_resid) %>%
                         mutate(start_position_num = as.numeric(start_position)) %>%
-                        mutate(normalized_location = round(start_position_num/length*100))
+                        mutate(normalized_location = round(start_position_num/protein_length*100))
     
     ## keep only acetylated nterm ----
     
