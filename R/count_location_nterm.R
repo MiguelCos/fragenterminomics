@@ -14,7 +14,7 @@ count_location_nterm <- function(tmt_report_annotated){
                         dplyr::select(index, protein_id, gene,peptide, peptide_length,
                                       specificity, nterm, semi_type, tmt_tag,
                                       start_position, end_position, last_aa, aa_after,
-                                      aa_before, following_10_resid, previous_10_resid, length, previous_all_resid) %>%
+                                      aa_before, following_10_resid, previous_10_resid, protein_length, previous_all_resid) %>%
                         mutate(start_position_num = as.numeric(start_position)) %>%
                         mutate(normalized_location = round(start_position_num/length*100))
     
